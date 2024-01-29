@@ -37,14 +37,14 @@ def dict_score(dict1,list1,score):
     return dict1
 def stander_output(way,list):
     if len(list)==0:
-        return way+"没有找到任何的IP地址"
-    return way+"找到了"+str(len(list))+"个IP"+'\n'+'\n'.join(x for x in list)+"\n"
+        return way+"No IP addresses found"
+    return way+"Found "+str(len(list))+"IP addresses"+'\n'+'\n'.join(x for x in list)+"\n"
 
 
 def res_output(list1,list2,list3):
     text=""
     if len(list1):
-        text+="最大可能的IP有"+str(len(list1))+"个"
+        text+="Max possible IPs: "+str(len(list1))+"个"
         text+="\n"
         for i in list1[:-1]:
             text+=i+","
@@ -52,14 +52,14 @@ def res_output(list1,list2,list3):
         text += "\n"
 
     if len(list2):
-        text+="比较大可能的IP有"+str(len(list2))+"个"
+        text+="Comparatively possible IPs"+str(len(list2))+"个"
         text+="\n"
         for i in list2[:-1]:
             text+=i+","
         text+=list2[-1]
         text += "\n"
     if len(list3):
-        text+="有可能的IP有"+str(len(list3))+"个"
+        text+="Possibly matching IPs: "+str(len(list3))+"个"
         text+="\n"
         for i in list3[:-1]:
             text+=i+","
@@ -69,7 +69,7 @@ def res_output(list1,list2,list3):
 from PySide2.QtCore import Signal,QObject
 
 class MySignals(QObject):
-    # 定义一种信号，两个参数 类型分别是： QTextBrowser 和 字符串
+    # Define a signal with two parameters: QTextBrowser and string
     text_print = Signal(QTextEdit,str)
     to_sign=Signal(str)
 
@@ -91,7 +91,7 @@ class Stats:
         self.horizontalLayout.addWidget(self.queryline)
         self.method = QtWidgets.QComboBox(Form)
         self.method.setObjectName("method")
-        self.method.addItems(['全部方法进行扫描', '不使用API进行扫描', '只使用API扫描'])
+        self.method.addItems(['Scan using all methods', 'Scan without API', 'Scan using only API'])
         self.horizontalLayout.addWidget(self.method)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.tabWidget = QtWidgets.QTabWidget(Form)
@@ -137,11 +137,11 @@ class Stats:
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
         self.verticalLayout_3.addLayout(self.verticalLayout_2)
         self.pool=ThreadPoolExecutor()
-        # self.ui = QUiLoader().load('cdn.ui') #load返回的数据就是窗口对象了
-        #通过load进行加入数据
+        # self.ui = QUiLoader().load('cdn.ui') # load returns the window object
+        # Add data through load
         #
-        self.querybtn.clicked.connect(self.handleCalc)#定义信号的处理 将处理函数和对象进行对应
-        # self.ui.method.addItem('全部进行扫描')
+        self.querybtn.clicked.connect(self.handleCalc) # Define signal processing, associate processing functions with objects
+        # self.ui.method.addItem('Scan using all methods')
         # self.ui.method.addItem('post')
         # self.ui.method.addItem('delete')
         self.yzbutton.clicked.connect(self.yzfunc)
@@ -171,33 +171,33 @@ class Stats:
         print(f"find-----{self.find}")
         if self.done==self.all:
             if self.find==0:
-                self.ms.text_print.emit(self.resulttext, "没有找到任何IP")
+                self.ms.text_print.emit(self.resulttext, "No IP found")
 
             else:
-                self.ms.text_print.emit(self.resulttext,"查询完毕")
+                self.ms.text_print.emit(self.resulttext,"Query completed")
 
 
 
     def retranslateUi(self, Form):
         from PySide2 import QtCore
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "IP地址查询器"))
-        self.yzbutton.setText(_translate("Form", "点击进行验证"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_1), _translate("Form", "总的结果"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Form", "解析信息收集"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("Form", "相同信息收集"))
-        self.querybtn.setText(_translate("Form", "查询"))
-        self.clearbtn.setText(_translate("Form", "清空"))
+        Form.setWindowTitle(_translate("Form", "IP Address Query Tool"))
+        self.yzbutton.setText(_translate("Form", "Click to Verify"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_1), _translate("Form", "Overall Results"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Form", "Parsing Information Collection"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("Form", "Identical Information Collection"))
+        self.querybtn.setText(_translate("Form", "Query"))
+        self.clearbtn.setText(_translate("Form", "Clear"))
 
 
     def __init__(self):
         pass
         # self.pool=ThreadPoolExecutor()
-        # # self.ui = QUiLoader().load('cdn.ui') #load返回的数据就是窗口对象了
-        # #通过load进行加入数据
+        # # self.ui = QUiLoader().load('cdn.ui') # The data returned by load is the window object
+        # # Add data through load
         # #
-        # self.querybtn.clicked.connect(self.handleCalc)#定义信号的处理 将处理函数和对象进行对应
-        # # self.ui.method.addItem('全部进行扫描')
+        # self.querybtn.clicked.connect(self.handleCalc) #Define signal processing and map processing functions to objects
+        # # self.ui.method.addItem('Scan all')
         # # self.ui.method.addItem('post')
         # # self.ui.method.addItem('delete')
         # self.yzbutton.clicked.connect(self.yzfunc)
@@ -229,8 +229,8 @@ class Stats:
 
     def func(self,domain):
         print(self.metho)
-        if self.metho=="全部方法进行扫描":
-            print("已经执行了")
+        if self.metho=="Scan using all methods":
+            print("Already executed")
             try:
                 # samecer_job=self.pool.submit(self.samecer,domain)
                 sametitle_job=self.pool.submit(self.sametitle,domain)
@@ -268,11 +268,11 @@ class Stats:
                 self.res_min = res_min
 
                 self.ms.text_print.emit(self.resulttext,res_output(res_max,res_med,res_min))
-                self.ms.text_print.emit(self.resulttext, "寻找完毕可以考虑是否进行验证")
+                self.ms.text_print.emit(self.resulttext, "Search complete, consider verification")
             except:
                 pass
 
-        elif self.metho == "不使用API进行扫描":
+        elif self.metho == "Scan without API":
             try:
                 dict2 = {}
                 withoutwww_job=self.pool.submit(self.withoutwww,domain)
@@ -297,11 +297,11 @@ class Stats:
                 self.res_min = res_min
 
                 self.ms.text_print.emit(self.resulttext,res_output(res_max,res_med,res_min))
-                self.ms.text_print.emit(self.resulttext, "寻找完毕可以考虑是否进行验证")
+                self.ms.text_print.emit(self.resulttext, "Search complete, consider verification")
 
             except:
                 pass
-        elif self.metho == "只使用API进行扫描":
+        elif self.metho == "Scan using only API":
             try:
                 dict3 = {}
                 withoutwww_job=self.pool.submit(self.withoutwww,domain)
@@ -326,7 +326,7 @@ class Stats:
                 self.res_min=res_min
 
                 self.ms.text_print.emit(self.resulttext,res_output(res_max,res_med,res_min))
-                self.ms.text_print.emit(self.resulttext, "寻找完毕可以考虑是否进行验证")
+                self.ms.text_print.emit(self.resulttext, "Search complete, consider verification")
 
             except:
                 pass
@@ -334,7 +334,7 @@ class Stats:
 
     def yzfunc(self):
         from scan import simple_task
-        print("开始验证!")
+        print("Start verification!")
         simple_task(self,"http://"+self.domain,self.res_max+self.res_med+self.res_min)
 
 
@@ -347,7 +347,7 @@ class Stats:
         ip_lis=[]
         domain = domain.lstrip('www.')
         try:
-            ans = dns.resolver.query(domain, 'A')  # 还是通过dns进行查询
+            ans = dns.resolver.query(domain, 'A')  # Query through DNS
             print(type(ans))
             if ans:
                 for i in ans.response.answer[-1].items:
@@ -356,7 +356,7 @@ class Stats:
                     ip_lis.append(i.address)
         except:
             pass
-        self.ms.text_print.emit(self.parseinfo, stander_output('通过寻找不带www的网站',ip_lis))
+        self.ms.text_print.emit(self.parseinfo, stander_output('Searching for sites without www',ip_lis))
         return ip_lis
             # for i in  ip_lis:
             #     q1.put(i)
@@ -366,13 +366,13 @@ class Stats:
 
     def dns(self,domain):
         ip_lis=[]
-        ans = dns.resolver.query(domain, 'A')  # 还是通过dns进行查询
+        ans = dns.resolver.query(domain, 'A')  # Query through DNS
         if ans:
             for i in ans.response.answer[-1].items:
                 if i.address in ip_lis:
                     continue
                 ip_lis.append(i.address)
-        self.ms.text_print.emit(self.parseinfo, stander_output('通过dns进行解析', ip_lis))
+        self.ms.text_print.emit(self.parseinfo, stander_output('DNS resolution', ip_lis))
         return ip_lis
         # thread = Thread(target=rock, args=(domain, []))
         # thread.start()
@@ -402,11 +402,11 @@ class Stats:
     #
     #     for cert in cert_lis:
     #         cert2iplis(cert, ip_lis)
-    #     self.ms.text_print.emit(self.ui.sameinfo, stander_output('通过相同的证书进行解析', ip_lis))
+    #     self.ms.text_print.emit(self.ui.sameinfo, stander_output('Resolved through the same certificate', ip_lis))
     #     return ip_lis
 
     #     # res = set(list(json.loads(r.text)))
-    #     # self.ms.text_print.emit(self.ui.sameinfo, stander_output('通过相同的证书进行解析', res))
+    #     # self.ms.text_print.emit(self.ui.sameinfo, stander_output('Resolving via the same certificate', res))
     #     # return res
 
 
@@ -420,11 +420,11 @@ class Stats:
         r = requests.get(url, header)
         res1 = re.search(r'meta.*?charset=(.*?)"', r.text)
         if res1 == None:
-            print(f'{red}没有找到目标网站对应的编码,将其默认设置为utf-8')
+            print(f'{red}No encoding found for the target site, defaulting to utf-8')
             r.encoding = 'utf-8'
 
         elif res1:
-            print(f'{green}找到目标网站对应的编码为{res1.group(1)}')
+            print(f'{green}Found encoding for the target site: {res1.group(1)}')
 
         r = requests.get(url, header)
         r.encoding = res1.group(1)
@@ -436,7 +436,7 @@ class Stats:
         r = requests.get(rawurl)
         regx = re.compile(r'/hosts/(.*?)">')
         rs = regx.findall(r.text)
-        self.ms.text_print.emit(self.sameinfo, stander_output('通过相同的标题进行解析', rs))
+        self.ms.text_print.emit(self.sameinfo, stander_output('Parsing using the same title', rs))
         #return ip_lis
         return  rs
         # thread = Thread(target=rocksametitle, args=(domain,))
@@ -461,12 +461,12 @@ class Stats:
     def sameico(self,url):
         import json
         '''
-        使用shodan查找和目标使用相同图标的网站
-        :param url: 访问的url
-        :param ip_lis: 对该ip_lis进行添加最后进行返回
+        Use shodan to find and target websites using the same icon
+        :param url: visited url
+        :param ip_lis: Add the ip_lis and finally return it
         :return:
         '''
-        print("开始进行相同图标网站的查询")
+        print("Start searching for websites with the same icon")
 
         url = "http://"+url
         api = Shodan(config.shodan_api)
@@ -489,8 +489,8 @@ class Stats:
 
         except:
             pass
-        print("相同图标网站查询结束找到了 " + str(len(res)))
-        self.ms.text_print.emit(self.sameinfo, stander_output('通过相同的网站图标寻找', res))
+        print("Search for websites with the same icon complete. Found " + str(len(res)))
+        self.ms.text_print.emit(self.sameinfo, stander_output('Finding websites with the same icon', res))
         return res
 
 if __name__ == '__main__':
