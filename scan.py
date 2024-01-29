@@ -5,7 +5,7 @@ def get_resp_len(url):
     res = 0
     try:
         import requests
-        #返回数据的响应包信息
+        # Return response body length
         '''
         Get the length of response body.
         '''
@@ -53,7 +53,7 @@ def pipei(self,lens,lock,ip):
     if get_resp_len(ip)==lens:
         self.ms.text_print.emit(self.resulttext, ip)
         # print("have found")
-        self.ms.to_sign.emit("find") #如果进入了这个步骤则会导致之后的代码不被执行
+        self.ms.to_sign.emit("find") # If this step is entered, it will cause the subsequent code not to be executed
 
 
     # print("done have token")
