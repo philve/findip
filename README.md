@@ -19,7 +19,7 @@ The above is all nonsense. The real situation is that I need a graduation projec
 ``` 
 git clone https://github.com/philve/findip.git
 cd findip
-python3 -r requirments.txt 
+pip install -r requirements.txt 
 ```
 
 ## Usage
