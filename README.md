@@ -1,8 +1,8 @@
 # Find ip
-通过一些网络上的方式去寻找CDN之后的真实 IP地址     
-DNS 解析  
-无www的网站解析 
-相同图标，标题，网站证书等方式进行    
+Use some online methods to find the real IP address behind the CDN
+DNS resolution
+Website analysis without www
+Use the same icon, title, website certificate, etc.  
 
 # 提示  
 你可以在程序当中选择使用API进行查找，也可以选择不使用API进行。   
