@@ -4,7 +4,7 @@ DNS resolution
 Website analysis without www
 Use the same icon, title, website certificate, etc.  
 
-# hint  
+# Hint  
 You can choose to use the API to search in the program, or you can choose not to use the API.
 If you need an API, you need to configure it in config.txt, which includes the APIs of censys and shodan.
 *censysy security_trail’s API is free*
@@ -17,7 +17,7 @@ The above is all nonsense. The real situation is that I need a graduation projec
 
 ## Install
 ``` 
-git clone https://github.com/Startr4ck/findip.git
+git clone https://github.com/philve/findip.git
 python3 -r requirments.txt 
 ```
 
