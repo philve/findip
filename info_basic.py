@@ -1,10 +1,10 @@
 '''
-该文件当中存放域名的相关信息的函数
+Functions in this file store information related to domain names.
 
 iscdn
-没有www的网页的domain请求
-历史的IP信息查询
-返回请求的响应长度
+Requests for domains without 'www'
+Query for historical IP information
+Return the length of the requested response
 '''
 yellow = '\033[01;33m'
 white = '\033[01;37m'
@@ -22,7 +22,7 @@ import requests
 import sys
 def domain_handler(domain):
     if "http" not in domain or "www" not in domain:
-        print("格式不规范 标准格式 http://www.example.com")
+        print("Incorrect format. Standard format: http://www.example.com")
         sys.exit(0)
     return domain
 def domain_short(domain):
@@ -31,11 +31,11 @@ def domain_short(domain):
     return  domain
 def iscdn(domain,ip_lis,port=80):
     '''
-    通过访问dns进行解析出来a记录然后进行访问常见的端口
-    :param domain: domain 的形式 example.com
-    :param ip_lis: 出现解析a记录的ip的列表
-    :param port: 端口默认为80和443
-    :return: 判断该域名是否是采用了cdn加速
+    Resolve A records by accessing DNS and then access common ports
+    :param domain: Domain in the form example.com
+    :param ip_list: List of resolved A records
+    :param port: Default ports are 80 and 443
+    :return: Determine if the domain is using CDN acceleration
     '''
     ans = dns.resolver.query(domain,'A')
     for i in ans.response.answer[-1].items:
@@ -53,27 +53,27 @@ def iscdn(domain,ip_lis,port=80):
         except:
             code1=500
 
-        if code< 400 or code1 <400 :  #表示能够访问其中的IP地址
+        if code< 400 or code1 <400 :  #Indicates that one of the IP addresses can be accessed
             flag=1
             break
     if flag:
-        print(f'''{red}domain+"不存在cdn 加速"''')
+        print(f'''{red}domain+"does not use CDN acceleration"''')
         return True
     else:
-        print(f'''{green}domain+"存在cdn 加速"''')
+        print(f'''{green}domain+"uses CDN acceleration"''')
         return False
 from urllib.parse import urlparse
 def withoutwww(domain,ip_lis):
     '''
     :param domain: domain www.example.com
-    :param ip_lis: 输入的ip_lis
-    :return: 返回的列表当中加上没有www的域名
+    :param ip_lis: Input ip_lis
+    :return: List with domains without 'www'
     '''
 
-    #除去domain当中的www
+    #Remove 'www' from the domain
 
     domain=domain.lstrip('www.')
-    ans = dns.resolver.query(domain,'A') #还是通过dns进行查询
+    ans = dns.resolver.query(domain,'A') #Still query through DNS
     if ans:
         for i in ans.response.answer[-1].items:
             if i.address in ip_lis:
@@ -86,9 +86,9 @@ import config
 import json
 def history_ip(domain):
     '''
-    :param ip_lis: 输入的IP信息
-    :param domain:进行请求的domain的信息 example.com
-    :return: 返回的数据还是操作的ip列表
+    :param ip_list: Input IP information
+    :param domain: Domain information for the request, example.com
+    :return: Data returned is still the list of operated IPs
     '''
     url = "https://api.securitytrails.com/v1/history/"+domain+"/dns/a"
     headers = {'accept': 'application/json',
@@ -106,7 +106,7 @@ def history_ip(domain):
     return (list(set(ip_lis)))
 
 def get_resp_len(url):
-    #返回数据的响应包信息
+    # Return response body length
     '''
     Get the length of response body.
     '''
