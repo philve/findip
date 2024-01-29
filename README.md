@@ -18,6 +18,7 @@ The above is all nonsense. The real situation is that I need a graduation projec
 ## Install
 ``` 
 git clone https://github.com/philve/findip.git
+cd findip
 python3 -r requirments.txt 
 ```
 
